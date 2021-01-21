@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {  /* widget controller */  var c = this;}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.center{
+ padding-left: 30px; 
+}
+
+.sspaced{
+ margin: 0; 
+}
+
+.buffer{
+ padding-bottom: 50px; 
+}
+
+h1 {
+  text-shadow: 1px 1px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>onedrive_page</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>OneDrive Page</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-11 16:30:31</sys_created_on>
+        <sys_id>25017b811bc9a010b32a419ae54bcb9b</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>OneDrive Page</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_widget_25017b811bc9a010b32a419ae54bcb9b</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-15 16:08:34</sys_updated_on>
+        <template><![CDATA[<div>
+  <a href="https://nasa.sharepoint.com/sites/OneDriveSupport
+" target="_blank">
+  <table>
+    <tr>
+      <a href="https://nasa/sharepoint.com/sites/OneDriveSupport">
+    	<td>
+      	<img src="onedrive.png" width="200" height="144"/>
+      </td>
+      <td><center>
+      	<h1>
+  OneDrive
+  </h1>
+  <h5>
+    Where collaboration happens
+  </h5>
+        </center></td>
+        </a>
+    </tr>
+  </table>
+    </a>
+
+  <div class="buffer">
+    
+  </div>
+  <div class="center">
+    
+  
+  <ul>
+    <li>Access from anywhere on the NASA network (on-site or VPN).</li>
+    <li>When logging into your laptop, desktop, or local conference room computer, navigate to https://portal.office.com and click OneDrive.</li>
+    <li>With OneDrive, your files are patiently waiting and ready when you are.</li>
+  </ul>
+    <br>
+  <p>To report any issues, please
+    <a href="https://apps.gov.powerapps.us/play/b1d09d8a-a40e-41cc-8565-72774a4e81a4" target="_blank">click here</a>.
+  </p>
+    <div class="buffer">
+      
+    </div>
+  <div>
+    <center>
+    	<img src="onedrive_town.png" width="800" height="250"/>
+    </center>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

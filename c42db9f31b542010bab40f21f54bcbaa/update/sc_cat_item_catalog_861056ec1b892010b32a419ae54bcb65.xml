@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_catalog">
+    <sc_cat_item_catalog action="INSERT_OR_UPDATE">
+        <sc_cat_item display_value="Web application security">b73eec901be46010bab40f21f54bcb7f</sc_cat_item>
+        <sc_catalog display_value="Service Catalog">e0d08b13c3330100c8b837659bba8fb4</sc_catalog>
+        <sys_class_name>sc_cat_item_catalog</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-09 20:10:04</sys_created_on>
+        <sys_id>861056ec1b892010b32a419ae54bcb65</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Catalog.Web application security</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sc_cat_item_catalog_861056ec1b892010b32a419ae54bcb65</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-09 20:10:04</sys_updated_on>
+    </sc_cat_item_catalog>
+</record_update>

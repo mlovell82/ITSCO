@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}
+
+/*
+<!--<a href="sp?id=sharepoint">
+        	 <img src="sharepoint.png" width="140" height="144"/>
+          <p>
+            SharePoint
+          </p>
+          </a>
+          <a href="sp?id=sharepoint">
+        	 <img src="sharepoint.png" width="140" height="144"/>
+          <p>
+            SharePoint
+          </p>
+          </a>  
+          
+          <a href="?id=sc_cat_item&sys_id=330709281b852010b32a419ae54bcbde">
+        	 <img src="teams.png" width="140" height="144"/>
+          <label>
+            Teams
+          </label>
+          </a>-->
+					
+					<!--<td class="centered">
+          <a href="?id=sc_cat_item&sys_id=330709281b852010b32a419ae54bcbde">
+        	 <img src="teams.png" width="140" height="144"/>
+          <p>
+            Teams
+          </p>
+          </a>
+        </td>-->
+*/]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.lined-cell{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.global-table{
+  width:900px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+.page-header{
+ 	width: 50%;
+  color: blue;
+  background-position: center;
+  background-size: 400px 350px;
+}
+
+.service-header{
+ color: white;
+  background-color: black;
+  text-align: center;
+  font-size: 200%;
+}
+
+.box{
+ vertical-align: top; 
+  horizontal-align: center;
+}
+
+h4{
+ color: black; 
+}
+
+ul{
+ color: black; 
+}
+
+.highlight{
+ 	color: blue; 
+}
+
+.centered{
+ text-align: center; 
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.buffer{
+ padding-bottom: 20px; 
+}
+
+.spaced{
+ padding-left: 5px;
+  padding-right: 5px;
+}
+
+.service-table{
+ background-color: lightgray; 
+}
+
+.service-cell{
+  background-color: lightgray;
+  width: 425px;
+}
+
+p { margin:0 }
+
+.link-table{
+ background-color: lightgray;
+  width: 900px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+.spacer-cell{
+ background-color: none;
+  padding-left: 20px;
+}
+
+.service-container{
+ width: 900px; 
+  border: = 1;
+}
+
+.oval {
+  width: 900px;
+  height: 40px;
+  background: #1d9a78;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>collaboration_home</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Collaboration Home</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-11-16 11:42:39</sys_created_on>
+        <sys_id>456f79051b242410b32a419ae54bcb84</sys_id>
+        <sys_mod_count>210</sys_mod_count>
+        <sys_name>Collaboration Home</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_widget_456f79051b242410b32a419ae54bcb84</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2021-01-20 16:21:46</sys_updated_on>
+        <template><![CDATA[<div>  
+  <div><center>
+    <table class="global-table">
+      <tr>
+      	<td class="page-header" background="collab_background.png">
+          <center>
+          <h1>
+            GRC Collaboration </h1><h1>Services Platform
+          </h1>
+          </center>
+        </td>
+      	<td width="50%">
+          <h4>
+            The GRC Collaboration Service platform is designed to  increase a team's and/or individual's productivity by:
+          </h4>
+          <ul>
+            <li>Offering a centralized workspace through <label class="highlight">SharePoint</label> <label class="highlight">Online sites</label> and <label class="highlight">Teams</label> where all employees and partners can work together and innovate quickly, which enables individuals and teams to be responsive to changes happening daily.
+</li>
+            <li>The ability to share and collaboratively create information, files and data with <label class="highlight">Box, Google Workspace, OneDrive, SharePoint Online sites</label> and <label class="highlight">Teams</label>.</li>
+            <li>Reducing task and project difficulty by creating functional workflows to automate business processes and ensuring staff can communicate with each other in order to achieve the best results to their processes and find solutions to their problems by utilizing <label="highlight">Forms, Planner, Power Automate</label> and <label class="highlight">Power Apps</label>.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr> <td><div class="buffer"> </div><td></td><td></td>  
+ </tr>
+     
+    </table>    
+    </center></div>
+  
+  <div class="buffer" style="width:100%">  
+  </div>
+  
+  <div><center>
+    <table class="service-container" border="1"><!-- class="global-table"-->
+      <div>
+        <tr>
+        	<td class="service-header">O365 Products</td>
+          <td class="service-header">Other Products</td>
+          <td class="service-header">Collaboration Services</td>
+        </tr>
+      	<tr>
+        	<td class="box" align="center">
+          	<table>
+          		<tr>
+            		<td class="centered">
+              		<a href="sp?id=sharepoint">
+        	 				<img src="sharepoint.png" width="140" height="144"/>
+          				<p>
+            				SharePoint
+          				</p>
+          				</a>  
+              	</td>
+              	<td class="centered">
+              		<a href="?id=sc_cat_item&sys_id=330709281b852010b32a419ae54bcbde">
+        	 				<img src="teams.png" width="140" height="144"/>
+          				<p>
+            				Teams
+          				</p>
+          				</a>
+              	</td>
+            	</tr>
+              <tr>
+              <td class="centered">
+              <a href="sp?id=planner">
+        	  <img src="planner.png" width="140" height="144"/>
+          <p>
+            Planner
+          </p>
+            </a>
+              </td><td class="centered">
+               <a href="sp?id=grc_it_forms">
+        	<img src="forms.png" width="140" height="144"/>
+          <p>
+            Forms
+          </p>
+          </a> 
+              </td>
+              </tr>
+              <tr>
+               <td class="centered">            
+            <a href="sp?id=power_apps">
+        	<img src="powerapps.png" width="140" height="120"/>
+            <p>
+              PowerApps
+            </p>
+              </a>
+        </td>
+          <td class="centered">
+            
+          <a href="sp?id=powerautomate">
+        	 <img src="powerautomate.png" width="140" height="130"/>
+            <p>
+              PowerAutomate
+            </p>
+            </a>
+        </td>
+              </tr>
+              <tr>
+              	<td class="centered">
+            <a href="sp?id=onedrive">
+        	<img src="onedrive.png" width="140" height="100"/>
+            <p>
+              OneDrive
+            </p>
+              </a>
+        </td>
+              </tr>
+          	</table>          
+        	</td>      	       
+        	<td class="box" align="center">
+            <table>
+              <tr>
+              	<td class="centered">
+                	<a href="?id=sc_cat_item&sys_id=eb719f411b49a010b32a419ae54bcba3">
+        	 	<img src="box.png" width="140" height="80"/>
+            <p>
+              Box
+            </p>
+            </a>
+                </td>
+              </tr>
+              <tr>
+              	<td class="centered">
+            <a href="?id=sc_cat_item&sys_id=9a18a7491b89a010b32a419ae54bcb65">
+        	 <img src="googlews.png" width="140" height="100"/>
+            <p>
+              Google Workspace
+            </p>
+            </a>
+        </td>
+              <tr>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+            
+        	</td>
+          <td class="box" align="center">
+          	<table>
+              <tr>
+              <td class="centered">
+            <a href="?id=sc_cat_item&sys_id=32f4878e1b4d6410b32a419ae54bcbbb">
+        		<img src="collaboration.png" width="140" height="110"/>
+            <p>
+              Collaboration
+            </p>
+            <p>
+              Consultation
+            </p>
+            </a>
+        	</td>
+              </tr>
+              <tr>
+              <td class="centered">
+        	 <img src="users.png" width="140" height="110"/>
+            <p>
+              Access for
+            </p>
+            <label>
+              Non-GFE
+            </label>
+            <label>
+              Users
+            </label>
+        </td>
+              </tr>
+              <tr>
+                <td class="centered">
+            <a href="?id=sc_cat_item&sys_id=9cc29f0e1b8d6410b32a419ae54bcb3c">
+        	<img src="questions.png" width="140" height="120"/>
+            <p>
+              Other
+            </p>
+            <p>
+              Questions
+            </p>
+              </a>
+        </td>           
+              </tr>
+              <tr>
+              	<td></td>
+              </tr>
+            </table>
+          </td>
+          
+        </tr>        
+      </div>
+    	</table>
+  	</center>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="task" label="GRC Web Application Security Request" max_length="40" name="x_g_nasa_grc_it_se_grc_web_application_security_request" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Additional comments" max_length="4000" name="additional_comments" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Application entered in AART" max_length="40" name="application_entered_in_aart" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Framework" max_length="4000" name="framework" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Milestones" max_length="32" name="milestones" reference="x_g_nasa_grc_it_se_milestones" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="PIA completed date" max_length="40" name="pia_completed_date" type="glide_date"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Primary contact" max_length="32" name="primary_contact" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Privacy impact assessment completed" max_length="40" name="privacy_impact_assessment_completed" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Privacy threshold analysis completed" max_length="40" name="privacy_threshold_analysis_completed" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="PTA completed date" max_length="40" name="pta_completed_date" type="glide_date"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Requestor" max_length="32" name="requestor" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="System security plan" max_length="32" name="system_security_plan" reference="x_g_nasa_grc_it_se_system_security_plan" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="System security plan exists" max_length="40" name="system_security_plan_exists" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Anticipated completion date" max_length="40" name="u_anticipated_completion_date" type="glide_date"/>
+        <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Milestones" max_length="1024" name="u_milestones" reference="x_g_nasa_grc_it_se_milestones" type="glide_list"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="web vulnerability scanning" label="Web application security service" max_length="40" name="web_application_security_service" type="string">
+            <choice>
+                <element inactive="true" inactive_on_update="true" label="IT" sequence="0" value="it"/>
+                <element inactive_on_update="false" label="Web vulnerability scanning" sequence="0" value="web vulnerability scanning"/>
+                <element inactive_on_update="false" label="New web application - IT security consultation" sequence="1" value="it security consultation"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Web application URL" max_length="1024" name="web_application_url" type="url"/>
+    </element>
+</database>

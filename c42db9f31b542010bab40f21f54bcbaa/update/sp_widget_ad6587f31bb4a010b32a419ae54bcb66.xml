@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.icon-img{position: absolute;
+    right: 0;
+    height: 75%;
+	bottom:0
+}
+.image-link-header{
+	font-size: 18px;
+    margin: 5px 0;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.buffer{
+ padding-bottom: 100px; 
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>service_spotlight_2</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Service Spotlight 2</name>
+        <option_schema>[{"name":"image","section":"Presentation","label":"Image","type":"string"},{"name":"title","section":"Presentation","label":"Title","type":"string"},{"name":"description","section":"Presentation","label":"Description","type":"string"},{"name":"link","section":"Presentation","label":"Link","type":"string"},{"name":"link_title","section":"Presentation","label":"Link Title","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-07 16:07:32</sys_created_on>
+        <sys_id>ad6587f31bb4a010b32a419ae54bcb66</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Service Spotlight 2</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_widget_ad6587f31bb4a010b32a419ae54bcb66</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-08 14:19:41</sys_updated_on>
+        <template><![CDATA[<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20 imagelink">
+  <img src="{{c.options.image}}" class="icon-img" alt="{{c.options.title}}"/>
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+  <div class="black image-link-header">
+    <h4>{{c.options.title}}</h4>
+  </div>
+    <div class="buffer">
+      
+    </div>
+  <p>
+    ${{{c.options.description}}}
+  </p>
+    <a href="{{c.options.link}}" target="_blank" class="btn btn-lg btn-success" aria-label="{{c.options.description}} which opens in a new window">
+     ${{{c.options.link_title}}}
+    </a>
+</div>
+  </div>]]></template>
+    </sp_widget>
+</record_update>

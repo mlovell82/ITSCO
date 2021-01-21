@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="Task table schema" source="com.glide.task">e56795a51b030010a39331d7dc4bcb99</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-11-12 14:33:28</sys_created_on>
+        <sys_id>1f3cee5e073120107109fbbf7c1ed0f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-11-12 14:33:28</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

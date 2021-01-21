@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="INSERT_OR_UPDATE">
+        <catalog_item display_value="Google Workspace">9a18a7491b89a010b32a419ae54bcb65</catalog_item>
+        <catalog_variable>IO:481749681b852010b32a419ae54bcbc5</catalog_variable>
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field/>
+        <mandatory>ignore</mandatory>
+        <order>100</order>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-11 15:51:35</sys_created_on>
+        <sys_id>83182b491b89a010b32a419ae54bcb58</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>permissions</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_83182b491b89a010b32a419ae54bcb58</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-11 15:51:35</sys_updated_on>
+        <table/>
+        <ui_policy display_value="Collaboration service is not sure">8318e7491b89a010b32a419ae54bcbef</ui_policy>
+        <variable>permissions</variable>
+        <variable_set/>
+        <visible>false</visible>
+    </catalog_ui_policy_action>
+</record_update>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>channels_standard_or_private</field>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-11-13 14:40:52</sys_created_on>
+        <sys_id>d15b4b081ba06010bab40f21f54bcb19</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>channels_standard_or_private</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sys_ui_policy_action_d15b4b081ba06010bab40f21f54bcb19</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-11-13 14:40:52</sys_updated_on>
+        <table>x_g_nasa_grc_it_se_grc_it_services</table>
+        <ui_policy display_value="Collaboration service is collaboration consultation">006943c41ba06010bab40f21f54bcb32</ui_policy>
+        <visible>false</visible>
+    </sys_ui_policy_action>
+</record_update>

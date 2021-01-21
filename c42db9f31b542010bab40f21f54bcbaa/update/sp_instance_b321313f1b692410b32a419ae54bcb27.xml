@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">b721313f1b692410b32a419ae54bcb25</sp_column>
+        <sp_widget display_value="Service Spotlight 2">ad6587f31bb4a010b32a419ae54bcb66</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2021-01-13 16:46:40</sys_created_on>
+        <sys_id>b321313f1b692410b32a419ae54bcb27</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>New Service Spotlight</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_instance_b321313f1b692410b32a419ae54bcb27</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2021-01-13 16:46:40</sys_updated_on>
+        <title>New Service Spotlight</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"image": {
+		"value": "spotlight.png",
+		"displayValue": "spotlight.png"
+	},
+	"title": {
+		"value": "New Service Spotlight",
+		"displayValue": "New Service Spotlight"
+	},
+	"description": {
+		"value": "",
+		"displayValue": ""
+	},
+	"link": {
+		"value": "/sp?id=collaboration_home",
+		"displayValue": "/sp?id=collaboration_home"
+	},
+	"link_title": {
+		"value": "Collaboration Services",
+		"displayValue": "Collaboration Services"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=b321313f1b692410b32a419ae54bcb27"/>
+</record_update>

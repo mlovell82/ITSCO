@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_category">
+    <sc_cat_item_category action="INSERT_OR_UPDATE">
+        <sc_cat_item display_value="Web application security">b73eec901be46010bab40f21f54bcb7f</sc_cat_item>
+        <sc_category display_value="">d560d6201bc92010b32a419ae54bcb36</sc_category>
+        <sys_class_name>sc_cat_item_category</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-09 20:13:43</sys_created_on>
+        <sys_id>6fe09a601bc92010b32a419ae54bcbcc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Web Application Security.Web application security</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sc_cat_item_category_6fe09a601bc92010b32a419ae54bcbcc</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-09 20:13:43</sys_updated_on>
+    </sc_cat_item_category>
+</record_update>

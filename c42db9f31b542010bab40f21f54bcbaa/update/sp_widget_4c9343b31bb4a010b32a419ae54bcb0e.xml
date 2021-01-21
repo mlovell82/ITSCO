@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($scope, $location, $window, spUtil, amb, $http, spAriaUtil, $timeout, spNavStateManager, $rootScope) {
+	var c = this;
+	c.showList = true;
+	$scope.options.show_keywords = true;
+	/*
+	 * options:
+	 * hide_footer (bool) = true to remove the data table footer contents
+	 * hide_header (bool) = true to remove the data table header contents
+	 * show_new (bool) = true to show the "New" record button
+	 * show_keywords (bool) = true to show the keyword search field
+	 * table (string) = the table name to query
+	 * filter (string) = the encoded query
+	 * o (string) = the order by column
+	 * d (string) = The order by direction: asc or desc
+	 * p (int) = the page to jump to
+	 * fields (string) = comma seperated list of fields that become the list columns
+	 * view (string) = the default view to load for columns, overrides fields
+	*/
+	$scope.exportTypes = [{label:'PDF', value: 'PDF'}, {label:'Excel', value:'EXCEL'}, {label:'CSV', value:'CSV'}];
+	var keys = ['table', 'filter', 'p', 'o', 'd'];
+
+	var eventNames = {
+		click: 'data_table.click',
+		setFilter: 'data_table.setFilter',
+		setKeywords: 'data_table.setKeywords'
+	};
+
+	$scope.go = function(table, item) {
+		function broadcastData(){
+		$rootScope.$broadcast('listItemSelected', item.number.value);
+		//$rootScope.$broadcast('sysIdSelected', item.sys_id);
+		}
+		
+		function broadcastToForm(){
+		//$rootScope.$broadcast('listItemSelected', item.number.value);
+		$rootScope.$broadcast('sysIdSelected', item.sys_id);
+		}		
+		
+		//alert(item.sys_id);
+		broadcastData();	
+		broadcastToForm();
+		c.showList = false;
+	};				
+	
+	$rootScope.$on('listViewUpdate', function(event, obj){
+			c.showList = obj;
+	});	
+	
+	$scope.newRecord = function(){
+		var parms = {
+			id: 'form',
+			table: $scope.data.table,
+			view: $scope.data.view,
+			sys_id: '-1'
+		};
+		if ($scope.data.filter != '')
+			parms.query = $scope.data.filter;
+
+		$location.search(parms);
+	};
+
+	function recoverStateFromUrl() {
+		$scope.data.fields = [];
+		var s = $location.search();
+		for (var x in keys) {
+			if (s[keys[x]]) {
+				$scope.data[keys[x]] = s[keys[x]];
+			}
+		}
+		$scope.server.update().then(function(data) {
+			if (s.sys_id) {
+				for (var x in data.list) {
+					if (data.list[x].sys_id == s.sys_id) {
+						$scope.go(s.table, data.list[x]);
+					}
+				}
+			}
+		});
+	}
+
+	if ($scope.options.fromUrl) {
+		var origSearch = $location.search();
+		$scope.$on('$locationChangeSuccess', function(e) {
+			var s = $location.search();
+			if (origSearch.id !== s.id)
+				return;
+
+			if ($scope.ignoreLocationChange){
+				$scope.ignoreLocationChange = false;
+				return;
+			}
+
+			// Helps to recover state when using the browser's back button
+			recoverStateFromUrl();
+		});
+	}
+
+
+	$scope.getNumber = function(num) {
+		return new Array(num);
+	}
+
+	$scope.mathMin = function(v1,v2) {
+		return Math.min(v1,v2);
+	}
+
+	function getData(updateUrl) {
+		var f = $scope.data;
+		spUtil.update($scope).then(function(data) {
+			f.view = data.view;
+			if ($scope.options.fromUrl && updateUrl)
+				setPermalink(f.table, f.filter, f.o, f.d, f.p);
+
+			if ($scope.options.show_breadcrumbs && data.filterBreadcrumbs)
+				$scope.$broadcast('widget-filter-breadcrumbs.setBreadcrumbs', data.filterBreadcrumbs.data, data.filter);
+
+			initRecordWatcher(f.table, f.filter);
+		});
+	}
+
+	function setPermalink(table, filter, orderBy, orderDirection, page){
+		$scope.ignoreLocationChange = true;
+		var search = $location.search();
+		angular.extend(search, {
+			spa: 1,
+			table: table,
+			filter: filter,
+			p: page,
+			o: orderBy,
+			d: orderDirection
+		});
+		$location.search(search);
+	}
+
+	var watcher;
+	function initRecordWatcher(table, filter){
+		if (watcher)
+			watcher.unsubscribe();
+
+		if (table && filter) {
+			var watcherChannel = amb.getChannelRW(table, filter);
+			amb.connect();
+			watcher = watcherChannel.subscribe(function(message) {
+				if (!message.data)
+					return;
+				switch(message.data.action) {
+					case "change":
+						updateRowFromRW(message);
+						break;
+					case "exit":
+						// A record was removed
+					case "enter":
+						// A record was added
+					default:
+						spUtil.update($scope);
+						break;
+				}
+			});
+		}
+	}
+
+	function updateRowFromRW(message) {
+		if (message.data && message.data.sys_id && $scope.data.list) {
+			var row, field;
+			for(var i=0;i<$scope.data.list.length; i++) {
+				row = $scope.data.list[i];
+				if (row.sys_id == message.data.sys_id) {
+					var fields = Object.getOwnPropertyNames(message.data.record);
+					for(var f in fields) {
+						field = fields[f];
+						if(typeof row[field] !== 'undefined') {
+						    row[field].display_value = message.data.record[field].display_value;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	$scope.$on('$destroy', function() {
+		if (watcher)
+			watcher.unsubscribe();
+	});
+
+	$scope.setPageNum = function(num) {
+		$scope.data.p = num;
+		getData(true);
+		$timeout(function() {
+			$scope.focusOnTableHeader();
+		});
+	}
+
+	$scope.setOrderBy = function(field) {
+		var d = "asc";
+		if ($scope.data.o == field) {
+			if ($scope.data.d == "asc")
+				d = "desc";
+			else
+				d = "asc";
+		}
+
+		if (d === "asc") {
+			spAriaUtil.sendLiveMessage($scope.data.msg.sortingByAsc);
+		} else if (d === "desc") {
+			spAriaUtil.sendLiveMessage($scope.data.msg.sortingByDesc);
+		}
+
+		$scope.data.o = field;
+		$scope.data.d = d;
+		$scope.setSearch(true);
+	}
+
+	$scope.setSearch = function(updateUrl) {
+		$scope.data.p = 1;
+		if ($scope.data.keywords) {
+			var previousSearchTerm = $scope.previousSearchTerm;
+			if (previousSearchTerm) {
+			previousSearchTerm = '123TEXTQUERY321=' + previousSearchTerm;
+			var previousSearchTermStartIndex = $scope.data.filter.indexOf(previousSearchTerm);
+			var previousSearchTermEndIndex = previousSearchTermStartIndex + previousSearchTerm.length;
+			if (previousSearchTermStartIndex >= 0)
+				$scope.data.filter = $scope.data.filter.substr(0, previousSearchTermStartIndex) + $scope.data.filter.substr(previousSearchTermEndIndex + 1, $scope.data.filter.length);
+			}
+			$scope.previousSearchTerm = $scope.data.keywords;
+		}
+		getData(updateUrl);
+	}
+
+	$scope.$on(eventNames.setFilter, function(e, newFilter){
+		$scope.data.filter = newFilter;
+		$scope.setSearch(false);
+	});
+
+	$scope.$on(eventNames.setKeywords, function(e, keywords){
+		$scope.data.keywords = keywords;
+		$scope.setSearch(false);
+	});
+
+	$scope.$on('widget-filter-breadcrumbs.queryModified', function(e, newFilter){
+		$scope.data.filter = newFilter;
+		$scope.setSearch(true);
+	});
+
+	$scope.rowsWerePruned = function() {
+		if (!$scope.data.list)
+			return;
+
+		$scope.rowsPruned = $scope.mathMin($scope.data.window_end,$scope.data.row_count) - $scope.data.window_start - $scope.data.list.length;
+		return $scope.rowsPruned > 0;
+	}
+
+	$scope.showFilter = function() {
+		return !$scope.data.list.length && !$scope.data.num_pages && !$scope.data.invalid_table && !$scope.loadingData;
+	}
+
+	c.appendQuery = function(query){
+		if ($scope.data.filter.length > 1)
+			$scope.data.filter += '^';
+		$scope.data.filter += query;
+			$scope.setSearch();
+
+	}
+
+	// Makes Widget Async
+	$scope.data = $scope.options;
+	$scope.loadingData = true;
+	$scope.server.update().then(function() {
+		if ($scope.data.newButtonUnsupported)
+			console.log("Service Portal: New button not supported for sys_attachment list");
+		$scope.loadingData = false;
+		initRecordWatcher($scope.data.table, $scope.data.filter);
+	});
+
+	function parseQuery(table, queryString){
+		return $http.post('/api/now/sp/parsequery/' + table, queryString).then(function(response){
+				return response.data.result;
+		});
+	}
+
+	c.createQueryTerm = function(table, field, sys_id, operator){
+		return $http.get('/api/now/sp/getInOutQueryTerm', {
+			params: {
+				table: table,
+				sys_id: sys_id,
+				field: field,
+				operator: operator
+			}
+		}).then(function(response){
+			if (response && response.data && response.data.result)
+				return response.data.result.parts;
+		});
+	}
+
+	c.isMultiPart = function(terms) {
+		for (var i = 0; i < terms.length; i++) {
+			var term = terms[i];
+			while (term.left)
+				term = term.left;
+			if (term.NQ)
+				return true;
+		}
+		return false;
+	}
+	
+	c.showMatching = function(field, newTerm) {
+		var queryString = $scope.data.filter;
+		var eq = "";
+		parseQuery($scope.data.table, queryString).then(function(oldTerms) {
+			var isMultiPart = c.isMultiPart(oldTerms);
+			for (var i = 0; i < oldTerms.length; i++) {
+				var term = oldTerms[i];
+				if (!isMultiPart && isSameField(newTerm, term))
+					continue;
+
+				if (eq.length)
+					eq += '^';
+
+				// term may be separated into nested "left" and "right" bits,
+				// follow the lefts to the bottom where "NQ" might be specified
+				var termNQCheck = oldTerms[i];
+				while (termNQCheck.left)
+					termNQCheck = termNQCheck.left;
+				if (termNQCheck.NQ) {
+					// query is multipart so apply new term to each part
+					eq += getEncodedTerm(newTerm);
+					eq += "^NQ";
+				}
+				eq += getEncodedTerm(term);
+			}
+			if (eq.length)
+				eq += '^';
+			eq += getEncodedTerm(newTerm);
+
+			$scope.data.filter = eq;
+			$scope.setSearch();
+		});
+	};
+
+	c.filterOut = function(field, newTerm) {
+		var eq = "";
+		if ($scope.data.filter.indexOf("^NQ") == -1) {
+			// don't need server roundtrip to parse query,
+			// can just append the new term
+			eq = $scope.data.filter;
+			if (eq.length)
+				eq += '^';
+			eq += getEncodedTerm(newTerm);
+			$scope.data.filter = eq;
+			$scope.setSearch();
+			return;
+		}
+		
+		// query may be multipart so must apply new term to each part
+		var queryString = $scope.data.filter;
+		parseQuery($scope.data.table, queryString).then(function(oldTerms) {
+			for (var i = 0; i < oldTerms.length; i++) {
+				var term = oldTerms[i];
+				if (eq.length)
+					eq += '^';
+
+				// term may be separated into nested "left" and "right" bits,
+				// follow the lefts to the bottom where "NQ" might be specified
+				var termNQCheck = oldTerms[i];
+				while (termNQCheck.left)
+					termNQCheck = termNQCheck.left;
+				if (termNQCheck.NQ) {
+					// query is multipart so apply new term to end of each part
+					eq += getEncodedTerm(newTerm);
+					eq += "^NQ";
+				}
+				eq += getEncodedTerm(term);
+			}
+			if (eq.length)
+				eq += '^';
+			eq += getEncodedTerm(newTerm);
+
+			$scope.data.filter = eq;
+			$scope.setSearch();
+		});
+	};
+
+	function isSameField(t1, t2) {
+		if ('left' in t1 && 'left' in t2)
+			return t1.left.query_term_field === t2.left.query_term_field;
+		else if ('left' in t1)
+			return t1.left.query_term_field === t2.query_term_field;
+		else if ('left' in t2)
+			return t1.query_term_field === t2.left.query_term_field;
+		return t1.query_term_field === t2.query_term_field;
+	}
+
+	function getEncodedTerm(term) {
+		var eq;
+		if (term.left) {
+			eq = getEncodedTerm(term.left);
+			eq += '^OR';
+			eq += getEncodedTerm(term.right);
+		} else {
+			eq = term.query_term_field;
+			eq += term.operator;
+			eq += term.value;
+		}
+		return eq;
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.panel-heading {
+  padding-left: 8px;
+  height: 2px;
+}
+
+thead {
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.table &gt; thead &gt; tr &gt; th {
+  border: 1px solid #ddd;
+  cursor: pointer;
+  vertical-align: middle;
+  background-color: white;
+
+  &amp;:nth-child(2) {
+    border-left: none;
+  }
+
+.lightened{
+  background-color: white;
+  }
+
+  &amp;:last-child {
+    border-right: none;
+  }
+}
+
+th i {
+  display: inline-block;
+  margin-left: 5px;
+  color: #A0A0A0;
+}
+
+th .disabled{
+  color:#ddd;
+}
+
+.th-title {
+  display: inline-block;
+  color: $primary;
+}
+
+.indent{
+ padding-left: 10px; 
+}
+
+.space-down{
+ padding-bottom: 20px; 
+}
+
+.panel-title{
+ height: 2px; 
+}
+
+.panel-body {
+  height: 750px;
+  overflow: auto;
+  padding: 0px;
+  //background-color: white;
+  // class="table table-striped table-responsive" ng-if="data.list.length"
+}
+
+
+.selected {
+  color: #fff;
+  background-color: $data-table-selected;
+  border-color: 1px solid #fff;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+.pruned-msg {
+  padding-bottom: 10px;
+  padding-left: 4px;
+  text-align: center;
+}
+
+.pruned-msg-filter-pad {
+  padding-top:8px;
+}
+
+.filter-breadcrumbs {
+  border-bottom: 1px solid #ddd;
+  padding-top: 3px;
+}
+
+.dropdown-toggle {
+  background: none;
+  padding: 0 0 4px 0;
+}
+
+.sp-list-cell {
+  white-space: pre-wrap;
+}
+
+.dropdown {
+  .glyphicon-menu-hamburger:focus {
+ 		outline: thin dotted;
+		outline: 5px auto $input-border-focus;
+		outline-offset: -2px; 
+	}
+}</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data>{"data":
+	{
+		"table": "incident",
+		"view": "default",
+		"o": "opened_at",
+		"d": "desc",
+		"filter": "activeEQtrue",
+		"p": 1,
+		"fields": "number,short_description"
+	}
+}</demo_data>
+        <description/>
+        <docs/>
+        <field_list>table,filter,field_list,maximum_entries,order,order_by,order_direction,title,color,glyph,sp_page</field_list>
+        <has_preview>false</has_preview>
+        <id>quick_links2</id>
+        <internal>false</internal>
+        <link><![CDATA[function(scope, element, attrs, ctrl){
+	var $ul, $contextMenu;
+
+	scope.focusOnTableHeader = function() {
+		element.find(".data-table-title").attr("tabindex", "-1").focus();
+	}
+
+	element.on('contextmenu', function(e){
+		if (e.ctrlKey)
+			return; // ctrlKey is for the debug menu, not this menu
+
+		var rowScope = angular.element(e.target).scope();
+		var field, item, fieldVal;
+
+		// Context Menu for tbody
+		if (angular.isDefined(rowScope.field) && angular.isDefined(rowScope.item)){
+			e.preventDefault();
+			field = rowScope.field;
+			item = rowScope.item;
+			fieldVal = item[field].value;
+
+			var items = [
+				['${Show Matching}', function(){
+					ctrl.createQueryTerm(scope.data.table, field, item.sys_id, '=').then(function(term){
+						ctrl.showMatching(field, term);
+					});
+				}],
+				['${Filter Out}', function(){
+					ctrl.createQueryTerm(scope.data.table, field, item.sys_id, '!=').then(function(term){
+						ctrl.filterOut(field, term);
+					});
+				}]
+			];
+
+			renderContextMenu(items);
+			setContextMenuPosition(e);
+		}
+	});
+
+	function renderContextMenu(items){
+		var scrollHeight = $('body').get(0).scrollHeight;
+		$contextMenu = angular.element('<div>', {'class': 'dropdown clearfix context-dropdown open'});
+
+		$contextMenu.on('click', function (e) {
+			if ($(e.target).hasClass('dropdown')) {
+				_clearContextMenus(event);
+			}
+		});
+		$contextMenu.on('contextmenu', function (event) {
+			event.preventDefault();
+			_clearContextMenus(event);
+		});
+
+		$contextMenu.css({
+			position: 'absolute',
+			top: 0,
+			height: scrollHeight,
+			left: 0,
+			right: 0,
+			zIndex: 9999
+		});
+
+		$('body').append($contextMenu);
+
+		$ul = angular.element('<ul>', {
+			'class': 'dropdown-menu',
+			'role': 'menu'
+		});
+		renderItems();
+		$contextMenu.append($ul);
+
+		function renderItems(){
+			angular.forEach(items, function (item) {
+				var $li = angular.element('<li>');
+
+				if (item === null) {
+					$li.addClass('divider');
+				} else {
+					var $a = angular.element('<a>');
+					$a.attr({tabindex: '-1', href:'#'});
+					$a.text(item[0]);
+					$li.append($a);
+					$li.on('click', function (e) {
+						e.preventDefault();
+						scope.$apply(function () {
+							_clearContextMenus(e);
+							item[1].call(item, item);
+						});
+					});
+				}
+
+				$ul.append($li);
+			});
+		}
+	}
+
+	function _clearContextMenus(event){
+		if (!event){
+			return;
+		}
+
+		angular.element(event.currentTarget).removeClass('context');
+
+		var els = angular.element(".context-dropdown");
+		angular.forEach(els, function(el){
+			angular.element(el).remove();
+		});
+	}
+
+	var contextMenuItemHeight = 0;
+	function setContextMenuPosition(event){
+		if (contextMenuItemHeight === 0)
+			contextMenuItemHeight = $ul.children(0).height();
+
+		// Why not just call .width() and .height() on the container? Because those calculations cause browsers to reflow
+		// that can cause IE10 to take 200ms to render a context menu.
+		var cmWidth = 150;
+		var cmHeight = contextMenuItemHeight * $ul.children().length;
+		var startX = event.pageX + cmWidth >= window.innerWidth ? event.pageX - cmWidth : event.pageX;
+		var startY = event.pageY + cmHeight >= window.innerHeight ? event.pageY - cmHeight : event.pageY;
+
+		$ul.css({
+			display: 'block',
+			position: 'absolute',
+			left: startX,
+			top: startY,
+			'min-width': cmWidth
+		});
+	}
+}]]></link>
+        <name>Quick Links2</name>
+        <option_schema>[{"hint":"If enabled, show the list filter in the breadcrumbs of the data table","name":"enable_filter","default_value":"false","section":"Behavior","label":"Enable Filter","type":"boolean"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	if (!input) // asynch load list
+		return;
+
+	data.msg = {};
+	data.msg.sortingByAsc = gs.getMessage("Sorting by ascending");
+	data.msg.sortingByDesc = gs.getMessage("Sorting by descending");
+
+	/*
+	 * data.table = the table
+	 * data.p = the current page starting at 1
+	 * data.o = the order by column
+	 * data.d = the order by direction
+	 * data.keywords = the keyword search term
+	 * data.list = the table data as an array
+	 * data.invalid_table = true if table is invalid or if data was not succesfully fetched
+	 * data.table_label = the table's display name. e.g. Incident
+	 * data.table_plural = the table's plural display name. e.g. Incidents
+	 * data.fields = a comma delimited list of field names to show in the data table
+	 * data.column_labels = a map of field name -> display name
+	 * data.window_size = the number of rows to show
+	 * data.filter = the encoded query
+	 */
+	// copy to data[name] from input[name] || option[name]
+	optCopy(['table', 'p', 'o', 'd', 'filter', 'filterACLs', 'fields', 'keywords', 'view']);
+	optCopy(['relationship_id', 'apply_to', 'apply_to_sys_id', 'window_size']);
+	if (!data.table) {
+		data.invalid_table = true;
+		data.table_label = "";
+		return;
+	}
+
+	if (!data.fields) {
+		if (data.view)
+			data.fields = $sp.getListColumns(data.table, data.view);
+		else
+			data.fields = $sp.getListColumns(data.table);
+	}
+
+	data.title = input.headerTitle;
+	data.view = data.view || 'mobile';
+	data.table = data.table || $sp.getValue('table');
+	data.filter = data.filter || $sp.getValue('filter');
+	data.keywords = data.keywords || $sp.getValue('keywords');
+	data.p = data.p || $sp.getValue('p') || 1;
+	data.p = parseInt(data.p);
+	data.o = data.o || $sp.getValue('o') || $sp.getValue('order_by');
+	data.d = data.d || $sp.getValue('d') || $sp.getValue('order_direction');
+	data.page_index = data.p - 1;
+	data.show_new = data.show_new || options.show_new;
+	var windowSize = data.window_size || $sp.getValue('maximum_entries') || 20;
+	windowSize = parseInt(windowSize);
+	if (isNaN(windowSize) || windowSize < 1)
+		windowSize = 20;
+	data.window_size = windowSize;
+
+	var grForMetaData = new GlideRecord(data.table);
+	var gr;
+	// FilteredGlideRecord is not supported in scoped apps, so GlideRecordSecure will always be used in an application scope
+	if (typeof FilteredGlideRecord != "undefined" && (gs.getProperty("glide.security.ui.filter") == "true" || grForMetaData.getAttribute("glide.security.ui.filter") != null)) {
+		gr = new FilteredGlideRecord(data.table);
+		gr.applyRowSecurity();
+	} else
+		gr = new GlideRecordSecure(data.table);
+	if (!gr.isValid()) {
+		data.invalid_table = true;
+		data.table_label = data.table;
+		return;
+	}
+
+	data.canCreate = gr.canCreate();
+	data.newButtonUnsupported = data.table == "sys_attachment";
+	data.table_label = gr.getLabel();
+	data.table_plural = gr.getED().getPlural();
+	data.hasTextIndex = $sp.hasTextIndex(data.table);
+	if (data.filter) {
+		if (data.filterACLs)
+			gr = $sp.addQueryString(gr, data.filter);
+		else
+			gr.addEncodedQuery(data.filter);
+	}
+	if (data.keywords) {
+		//gr.addQuery('123TEXTQUERY321', data.keywords);	
+		var govCat = "";
+		if(data.keywords == "tracking" || data.keywords == "Tracking" || data.keywords == "TRACKING"){
+			govCat = "4";
+		}
+		if(data.keywords == "silver" || data.keywords == "Silver" || data.keywords == "SILVER"){
+			 govCat = "2";
+		}
+		if(data.keywords == "bronze" || data.keywords == "Bronze" || data.keywords == "BRONZE"){
+			govCat = "3";
+		}
+		if(data.keywords == "gold" || data.keywords == "Gold" || data.keywords == "GOLD"){
+			govCat = "1";
+		}
+		
+		var state = "";
+		if(data.keywords == "formulation" || data.keywords == "Formulation" || data.keywords == "FORMULATION"){
+			state = "10"
+		}
+		if(data.keywords == "work in progress" || data.keywords == "Work in Progress" || data.keywords == "WORK IN PROGRESS"){
+			state = "2"
+		}
+		if(data.keywords == "closed complete" || data.keywords == "Closed Complete" || data.keywords == "CLOSED COMPLETE"){
+			state = "3"
+		}
+		if(data.keywords == "closed incomplete" || data.keywords == "Closed Incomplete" || data.keywords == "CLOSED INCOMPLETE"){
+			state = "4"
+		}
+		if(data.keywords == "closed skipped" || data.keywords == "Closed Skipped" || data.keywords == "CLOSED SKIPPED"){
+			state = "7"
+		}
+		if(data.keywords == "pending" || data.keywords == "Pending" || data.keywords == "PENDING"){
+			state = "-5"
+		}
+		var strQuery = "short_descriptionLIKE" + data.keywords + "^ORu_programLIKE" + data.keywords + "^ORu_overall_project_statusLIKE" + data.keywords + "^ORu_executing_orgLIKE" + data.keywords + "^ORnumberLIKE" + data.keywords;
+		if(govCat != "")
+			strQuery = strQuery + "^ORu_governance_categorization=" + govCat;
+		if(state != "")
+			strQuery = strQuery + "^ORstate=" + state;
+		gr.addEncodedQuery(strQuery);
+		data.keywords = null;
+	}
+
+	data.filter = gr.getEncodedQuery();
+
+	if (data.relationship_id) {
+		var rel = GlideRelationship.get(data.relationship_id);
+		var target = new GlideRecord(data.table);
+		var applyTo = new GlideRecord(data.apply_to);
+		applyTo.get("sys_id", data.apply_to_sys_id);
+		rel.queryWith(applyTo, target); // put the relationship query into target
+		data.exportQuery = target.getEncodedQuery();
+		gr.addEncodedQuery(data.exportQuery); // get the query the relationship made for us
+	}
+	if (data.exportQuery)
+		data.exportQuery += '^' + data.filter;
+	else
+		data.exportQuery = data.filter;
+	data.exportQueryEncoded = encodeURIComponent(data.exportQuery);
+	if (data.o){
+		if (data.d == "asc")
+			gr.orderBy(data.o);
+		else
+			gr.orderByDesc(data.o);
+		if (gs.getProperty("glide.secondary.query.sysid") == "true")
+			gr.orderBy("sys_id");
+	}
+
+	data.window_start = data.page_index * data.window_size;
+	data.window_end = (data.page_index + 1) * data.window_size;
+	gr.chooseWindow(data.window_start, data.window_end);
+	gr._query();
+
+	data.row_count = gr.getRowCount();
+	data.num_pages = Math.ceil(data.row_count / data.window_size);
+	data.column_labels = {};
+	data.fields_array = data.fields.split(',');
+
+	// use GlideRecord to get field labels vs. GlideRecordSecure
+	for (var i in data.fields_array) {
+		var field = data.fields_array[i];
+		var ge = grForMetaData.getElement(field);
+		if (ge == null)
+			continue;
+
+		data.column_labels[field] = ge.getLabel();
+	}
+
+	data.list = [];
+	while (gr._next()) {
+		var record = {};
+		$sp.getRecordElements(record, gr, data.fields);
+		if (typeof FilteredGlideRecord != "undefined" && gr instanceof FilteredGlideRecord) {
+			// FilteredGlideRecord doesn't do field-level
+			// security, so take care of that here
+			for (var f in data.fields_array) {
+				var fld = data.fields_array[f];
+				if (!gr.isValidField(fld))
+					continue;
+
+				if (!gr[fld].canRead()) {
+					record[fld].value = null;
+					record[fld].display_value = null;
+				}
+			}
+		}
+		record.sys_id = gr.getValue('sys_id');
+		record.targetTable = gr.getRecordClassName();
+		data.list.push(record);
+	}
+
+	data.enable_filter = (input.enable_filter == true || input.enable_filter == "true" ||
+		options.enable_filter == true || options.enable_filter == "true");
+	var breadcrumbWidgetParams = {
+		table: data.table,
+		query: data.filter,
+		enable_filter: data.enable_filter
+	};
+	data.filterBreadcrumbs = $sp.getWidget('widget-filter-breadcrumbs', breadcrumbWidgetParams);
+
+	// copy to data from input or options
+	function optCopy(names) {
+		names.forEach(function(name) {
+			data[name] = input[name] || options[name];
+		})
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-07 15:59:30</sys_created_on>
+        <sys_id>4c9343b31bb4a010b32a419ae54bcb0e</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>Quick Links2</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_widget_4c9343b31bb4a010b32a419ae54bcb0e</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2021-01-15 17:49:00</sys_updated_on>
+        <template><![CDATA[<div ng-show="c.showList" class="panel panel-{{options.color}} b">
+  <div class="panel-heading form-inline" ng-hide="options.hide_header">
+    <span class="dropdown m-r-xs">
+      <ul class="dropdown-menu" aria-labelledby="optionsMenu">
+        <li ng-repeat="t in ::exportTypes">
+          <a ng-href="/{{data.table}}_list.do?{{::t.value}}&sysparm_query={{data.exportQuery}}&sysparm_view={{data.view}}&sysparm_fields={{data.fields}}" target="_new" tabindex="-1">${Export as} {{::t.label}}</a>
+        </li>
+      </ul>
+    </span>
+    <span class="panel-title"><i ng-if="options.glyph" class="fa fa-{{options.glyph}} m-r"></i></span>
+    <button name="new" role="button" class="btn btn-primary btn-sm m-l-xs" ng-click="newRecord()" ng-if="options.show_new && data.canCreate && !data.newButtonUnsupported" aria-label="${Create new record}">${New}</button>
+    <div class="pull-right" ng-if="options.show_keywords">
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!-- body -->
+  <div class="panel-body">
+    <h2 class="sr-only data-table-title">{{data.title || data.table_plural}} ${table} - ${page} {{data.p}}</h2>
+    <div ng-if="options.show_breadcrumbs && (data.filter || data.enable_filter)" class="filter-breadcrumbs">
+      <sp-widget widget="data.filterBreadcrumbs"></sp-widget>
+    </div>
+    <div class="clearfix"></div>
+    <div class="alert alert-info" ng-if="!data.list.length && !data.num_pages && !data.invalid_table && !loadingData">
+      ${No records in {{data.table_label}} <span ng-if="data.filter">using that filter</span>}
+    </div>
+    <div class="alert alert-info" ng-if="loadingData">
+      <fa name="spinner" spin="true"></fa> ${Loading data}...
+    </div>
+    <table>
+      <thead>
+      </thead>
+      <tbody class="lightened">
+        <tr>
+          <td class="lightened">
+            <div class="lightened">
+              <h4>
+                Quick Links
+              </h4>
+            </div>
+            <div class="indent">
+              <a href="https://www.grc.nasa.gov/OCIO/" target="_blank">GRC OCIO</a>
+            </div>
+            <div class="indent">
+              <a href="https://inside.nasa.gov/ocio" target="_blank">Agency OCIO</a>
+            </div>
+            <div class="space-down">
+            </div>
+            <div>
+              <h4>
+                New Service Spotlight
+              </h4>
+            </div>
+            <div class="indent">
+              <a href="sp?id=collaboration_home">Collaboration Services</a>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div ng-class="{'pruned-msg-filter-pad': (!options.show_breadcrumbs || !data.filter) && !data.list.length}" class="pruned-msg" ng-if="rowsWerePruned()">
+      <span ng-if="rowsPruned == 1">${{{rowsPruned}} row removed by security constraints}</span>
+      <span ng-if="rowsPruned > 1">${{{rowsPruned}} rows removed by security constraints}</span>
+    </div>
+  </div>
+  <span class="clearfix"></span>
+</div>]]></template>
+    </sp_widget>
+</record_update>

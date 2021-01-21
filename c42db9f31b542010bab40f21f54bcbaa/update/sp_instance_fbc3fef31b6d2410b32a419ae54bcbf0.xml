@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">79e2b97f1b692410b32a419ae54bcb05</sp_column>
+        <sp_widget display_value="GRC OCIO Service Icon">86dee2bf1b2d2410b32a419ae54bcbb8</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2021-01-13 21:37:46</sys_created_on>
+        <sys_id>fbc3fef31b6d2410b32a419ae54bcbf0</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_instance_fbc3fef31b6d2410b32a419ae54bcbf0</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2021-01-14 16:49:31</sys_updated_on>
+        <title/>
+        <url>sp?id=it_management_and_governance_home</url>
+        <widget_parameters><![CDATA[{
+	"service_name": {
+		"value": "IT Management",
+		"displayValue": "IT Management"
+	},
+	"service_image": {
+		"value": "it_management_icon.png",
+		"displayValue": "it_management_icon.png"
+	},
+	"url": {
+		"value": "sp?id=it_management_and_governance_home",
+		"displayValue": "sp?id=it_management_and_governance_home"
+	},
+	"description": {
+		"value": "",
+		"displayValue": ""
+	},
+	"service_name_part_2": {
+		"value": "and Governance",
+		"displayValue": "and Governance"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=fbc3fef31b6d2410b32a419ae54bcbf0"/>
+</record_update>

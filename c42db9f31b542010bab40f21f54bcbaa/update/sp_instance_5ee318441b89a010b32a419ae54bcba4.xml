@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color/>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>2</order>
+        <roles/>
+        <short_description/>
+        <size/>
+        <sp_column display_value="2">0a0c8b7b1bb4a010b32a419ae54bcbad</sp_column>
+        <sp_widget display_value="GRC IT Home Page Search">0152dccc1b49a010b32a419ae54bcbf6</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-07 21:50:33</sys_created_on>
+        <sys_id>5ee318441b89a010b32a419ae54bcba4</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>What can we help you with?</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_instance_5ee318441b89a010b32a419ae54bcba4</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-09 20:42:10</sys_updated_on>
+        <title>What can we help you with?</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"title": {
+		"value": "What can we help you with?",
+		"displayValue": "What can we help you with?"
+	},
+	"color": {
+		"value": "",
+		"displayValue": ""
+	},
+	"glyph": {
+		"value": "",
+		"displayValue": ""
+	},
+	"size": {
+		"value": "",
+		"displayValue": ""
+	},
+	"limit": {
+		"value": null,
+		"displayValue": ""
+	},
+	"contextual_search_sources": {
+		"value": "76a86f01b3902300e64be12b86a8dc93,c96eb1686721220023c82e08f585efff,a2990ae41b892010b32a419ae54bcb1a,650c46681b892010b32a419ae54bcb4a,32f616281bc92010b32a419ae54bcb54",
+		"displayValue": "Instance Portal, Pages, Portal Instance, Catalogs, Page2"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=5ee318441b89a010b32a419ae54bcba4"/>
+</record_update>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_link">
+    <sp_instance_link action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <order>1</order>
+        <roles/>
+        <sc_cat_item/>
+        <sc_category/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">269998e11b682410bab40f21f54bcb9c</sp_column>
+        <sp_page/>
+        <sp_widget display_value="GRC IT Icon Link">661cbf441b85e010b32a419ae54bcbd1</sp_widget>
+        <sys_class_name>sp_instance_link</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-08 15:52:06</sys_created_on>
+        <sys_id>5d7b04941bc5e010b32a419ae54bcb39</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Desk Telephone Services</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_instance_link_5d7b04941bc5e010b32a419ae54bcb39</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-08 15:54:50</sys_updated_on>
+        <title>Desk Telephone Services</title>
+        <type>url</type>
+        <url>https://esd.nasa.gov/esdportal?id=sc_category&amp;sys_id=355825d4db7a1380ed6934cc7c961925&amp;catalog_id=-1</url>
+        <widget_parameters><![CDATA[{
+	"link_template": {
+		"value": "Color Box",
+		"displayValue": "Color Box"
+	}
+}]]></widget_parameters>
+    </sp_instance_link>
+    <sys_translated_text action="delete_multiple" query="documentkey=5d7b04941bc5e010b32a419ae54bcb39"/>
+</record_update>

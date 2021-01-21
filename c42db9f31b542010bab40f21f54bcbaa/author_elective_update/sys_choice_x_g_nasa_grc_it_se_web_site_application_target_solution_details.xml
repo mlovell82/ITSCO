@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="target_solution_details" table="x_g_nasa_grc_it_se_web_site_application" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>target_solution_details</element>
+            <name>x_g_nasa_grc_it_se_web_site_application</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-23 15:45:11</sys_created_on>
+            <sys_id>420ab21b1b64a410b32a419ae54bcbfb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>target_solution_details</sys_name>
+            <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+            <sys_update_name>sys_choice_x_g_nasa_grc_it_se_web_site_application_target_solution_details</sys_update_name>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-23 15:45:11</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>target_solution_details</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>WP website</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_web_site_application</name>
+            <sequence>0</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-23 15:45:11</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0a0ab21b1b64a410b32a419ae54bcbfa</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-23 15:45:11</sys_updated_on>
+            <value>wp website</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>target_solution_details</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>SPO</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_web_site_application</name>
+            <sequence>1</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-23 15:45:11</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>8a0ab21b1b64a410b32a419ae54bcbfc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-23 15:45:11</sys_updated_on>
+            <value>spo</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>target_solution_details</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>web application</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_web_site_application</name>
+            <sequence>2</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-23 15:45:11</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4a0ab21b1b64a410b32a419ae54bcbfe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-23 15:45:11</sys_updated_on>
+            <value>web application</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

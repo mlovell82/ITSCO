@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {  /* widget controller */  var c = this;}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.center{
+ padding-left: 30px; 
+}
+
+.sspaced{
+ margin: 0; 
+}
+
+.buffer{
+ padding-bottom: 50px; 
+}
+h1 {
+  text-shadow: 1px 1px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>powerautomate_page</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>PowerAutomate Page</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-15 14:43:01</sys_created_on>
+        <sys_id>fdce7f561b8da410b32a419ae54bcb01</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>PowerAutomate Page</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_widget_fdce7f561b8da410b32a419ae54bcb01</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-15 15:11:13</sys_updated_on>
+        <template><![CDATA[<div>
+  <a href="https://nasa.sharepoint.com/sites/FlowSupport" target="_blank">
+  <table>
+    <tr>      
+        
+    	<td>
+      	<img src="powerautomate.png" width="160" height="144"/>
+      </td>
+      <td>
+        <center>
+      	<h1>
+  PowerAutomate
+  </h1>
+  <h5>
+    Enabling Innovation by implementing automation
+  </h5>        
+        </center>
+          
+      </td>
+          
+    </tr>
+  </table>
+</a>
+  <div class="buffer">
+    
+  </div>
+  <div class="center">
+    
+  
+  <p class="sspaced">
+    Power Automate helps you create automated workflows between your favorite 
+    </p>
+    <p class="sspaced">
+      apps and services to synchronize files, get notifications, collect data and more.
+ 
+    </p>
+    <p class="sspaced">
+     To request automation services or to report any issues, please 
+    <a href="https://apps.gov.powerapps.us/play/b1d09d8a-a40e-41cc-8565-72774a4e81a4" target="_blank">click here</a>.
+  </p>
+  
+  </div>
+  <div class="buffer">
+    
+  </div>
+  <p>
+    Knowledge Articles
+  </p>
+  <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/FlowSupport/SitePages/Power-Automate.aspx
+"
+ target="_blank">Power Automate: Getting Started
+
+</a></p>
+  <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/FlowSupport/SitePages/Flow-H.aspx
+"
+ target="_blank">Power Automate: Unable to Connect to Outlook
+
+</a></p> 
+   <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/FlowSupport/SitePages/Approved-Power-Automate-Connectors.aspx"
+ target="_blank">Power Automate: Approved Connectors
+
+</a></p>
+  <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/FlowSupport/SitePages/Power-Automate-Training.aspx"
+ target="_blank">Power Automate: Training Videos and Links
+
+</a></p> 
+</div>]]></template>
+    </sp_widget>
+</record_update>

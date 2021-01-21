@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" extends="task" label="GRC Collaboration Service Request" max_length="40" name="x_g_nasa_grc_it_se_grc_collaboration_service_request" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Channels (Standard or Private)" max_length="40" name="channels_standard_or_private" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Chat" max_length="40" name="chat" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Collaboration service" max_length="40" name="collaboration_service" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Teams" sequence="0" value="teams"/>
+                <element inactive_on_update="false" label="Box" sequence="1" value="box"/>
+                <element inactive_on_update="false" label="Google Workspace" sequence="2" value="google workspace"/>
+                <element inactive_on_update="false" label="Collaboration consultation" sequence="3" value="collaboration consultation"/>
+                <element inactive_on_update="false" label="Not sure" sequence="4" value="not sure"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Deadline to implement a solution" max_length="4000" name="deadline_to_implement_a_solution" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Docs" max_length="40" name="docs" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Drive" max_length="40" name="drive" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="External sharing" max_length="40" name="external_sharing" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="File Sharing" max_length="40" name="file_sharing" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Government-furnished equipment" max_length="4000" name="government_furnished_equipment" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Hangouts" max_length="40" name="hangouts" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Meetings" max_length="40" name="meetings" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Meeting attendees" max_length="1024" name="meeting_attendees" reference="sys_user" type="glide_list"/>
+        <element attributes="edge_encryption_enabled=true" label="Mobile App" max_length="40" name="mobile_app" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Notes" max_length="40" name="notes" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Notifications" max_length="40" name="notifications" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Other" max_length="40" name="other" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Permissions" max_length="40" name="permissions" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Pinning Apps" max_length="40" name="pinning_apps" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Resubmitted for approval" max_length="40" name="resubmitted_for_approval" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Sheets" max_length="40" name="sheets" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Slides" max_length="40" name="slides" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Stakeholders" max_length="40" name="stakeholders" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Business value" max_length="4000" name="u_business_value" type="string"/>
+        <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Meeting attendees" max_length="1024" name="u_meeting_attendees" reference="sys_user" type="glide_list"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Requestor" max_length="32" name="u_requestor" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Requestor organization" max_length="32" name="u_requestor_organization" reference="cmn_department" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Stakeholders" max_length="1024" name="u_stakeholder" reference="sys_user" type="glide_list"/>
+        <element attributes="edge_encryption_enabled=true" label="Version control" max_length="40" name="version_control" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Video / screen sharing" max_length="40" name="video_screen_sharing" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Whiteboard" max_length="40" name="whiteboard" type="boolean"/>
+    </element>
+</database>

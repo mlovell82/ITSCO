@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="task" label="Web Site / Application" max_length="40" name="x_g_nasa_grc_it_se_web_site_application" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Business justification" max_length="4000" name="business_justification" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="internal to nasa" label="Internal to NASA or public" max_length="40" name="internal_to_nasa_or_public" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Internal to NASA" sequence="0" value="internal to nasa"/>
+                <element inactive_on_update="false" label="Public" sequence="1" value="public"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Number of users" max_length="40" name="number_of_users" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Requestor" max_length="32" name="requestor" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Target solution details" max_length="4000" name="target_solution_details" type="string">
+            <choice>
+                <element inactive_on_update="false" label="WP website" sequence="0" value="wp website"/>
+                <element inactive_on_update="false" label="SPO" sequence="1" value="spo"/>
+                <element inactive_on_update="false" label="web application" sequence="2" value="web application"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Target solution exists" max_length="40" name="target_solution_exists" type="boolean"/>
+    </element>
+</database>

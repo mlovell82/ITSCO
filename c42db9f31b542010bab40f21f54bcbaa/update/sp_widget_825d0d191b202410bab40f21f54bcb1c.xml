@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, spUtil, $uibModal) {
+  /* widget controller */
+  var c = this;
+	
+	$scope.requestor = {
+displayValue: c.data.requestor.name,
+value: c.data.requestor.sys_id,
+name: 'requestor'
+};
+	
+	c.updateCode = function(value){
+		//c.data.setUser = value;
+		alert("test worked");
+	}
+	
+	c.isTeams = false; 
+	c.isBox = false;
+	c.isGoogle = false;
+	c.isCC = false;
+	c.isNotSure = true;
+	c.pocGroup = [];
+	c.stakeholderGroup = [];
+	$scope.wbsExist = false;
+	c.openWBSModal = function() {
+    c.wbsModalInstance = $uibModal.open({
+      templateUrl: 'wbsModalTemplate',
+      scope: $scope
+    });
+  }
+	 c.closeWBSModal = function() {
+    c.wbsModalInstance.close();
+  }
+	
+	c.saveWBS = function(){		 
+		 c.accountingString = {};
+		 c.accountingString.poc = c.data.poc.displayValue;
+		 c.pocGroup.push(c.accountingString);
+		// $scope.saveWBS = function() {
+     // $scope.data.wbsString = "RecordAWBS";
+   //   c.server.update().then(function() {})
+   // };
+   // $scope.saveWBS();
+    //wbsArray.push(c.data.wbsID);
+		
+		
+		 $scope.wbsExist = true;
+	 }	 
+	
+	c.openStakeholderModal = function() {
+    c.stakeholderModalInstance = $uibModal.open({
+      templateUrl: 'stakeholderModalTemplate',
+      scope: $scope
+    });
+  }
+	 c.closeStakeholderModal = function() {
+    c.stakeholderModalInstance.close();
+  }
+	
+	c.saveStakeholder = function(){		 
+		 c.accountingString = {};
+		 c.accountingString.poc = c.data.stakeholder.displayValue;
+		 c.stakeholderGroup.push(c.accountingString);
+		// $scope.saveWBS = function() {
+     // $scope.data.wbsString = "RecordAWBS";
+   //   c.server.update().then(function() {})
+   // };
+   // $scope.saveWBS();
+    //wbsArray.push(c.data.wbsID);
+		
+		 //alert(c.pocGroup);
+		 //$scope.wbsExist = true;
+	 }	 
+	
+	c.valueSelected = function(selectedValue){
+		switch(selectedValue){
+			case 'teams':
+				c.isTeams = true;
+				c.isBox = false;
+				c.isCC = false;
+				c.isGoogle = false;
+				c.isNotSure = false;
+				break;
+			case 'box':
+				c.isBox = true;
+				c.isTeams = false;
+				c.isGoogle = false;
+				c.isCC = false;
+				c.isNotSure = false;
+				break;
+			case 'google workspace / g suite':
+				c.isGoogle = true;
+				c.isTeams = false;
+				c.isBox = false;
+				c.isCC = false;
+				c.isNotSure = false;
+				break;
+			case 'collaboration consultations':
+				c.isCC = true;
+				c.isTeams = false;
+				c.isBox = false;
+				c.isGoogle = false;
+				c.isNotSure = false;
+				break;
+			case 'not sure what you need':
+				c.isNotSure = true;
+				c.isTeams = false;
+				c.isBox = false;
+				c.isCC = false;
+				c.isGoogle = false;
+				break;
+		}
+	}
+	 c.serviceOptions = [{
+    label: 'Teams',
+    value: 'teams'
+  }, {
+    label: 'Box',
+    value: 'box'
+  }, {
+    label: 'Googel Workspace / G Suite',
+    value: 'google workspace / g suite'
+  }, {
+    label: 'Collaboration Consultations',
+    value: 'collaboration consultations'
+  }, {
+    label: 'Not sure what you need',
+    value: 'not sure what you need'
+  }];
+
+  c.serviceOptionList = {
+    hideSearch: false
+  };
+
+  c.serviceOptionDefault = 'not sure what you need';
+  c.travelTypeDefault = "space act agreement";
+	c.serviceChanged = function(value){
+		
+	}
+	
+	$scope.saveStartDate = function() {
+		$scope.startDate = $scope.c.data.requestDate;
+	}
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>collaboration_services</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Collaboration Services</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	data.userID = gs.getUser().getID();
+	data.serviceOptionDefault = "not sure what you need";
+	data.travelPurposeDefault = "teams";
+	data.services = "not sure";
+	data.poc = "";
+	data.stakeholder = "";
+	data.requestDate = new Date().toDateString();
+	data.user = data.userID;
+	
+/*	
+	var projectSysId = "";
+if (input.setProject)
+	projectSysId = input.setProject;
+else
+	projectSysId = gs.getUser().getRecord().getValue('project');
+*/
+var grUser = new GlideRecord('sys_user');
+	grUser.get('sys_id',data.userID);
+	data.requestor = {};
+	$sp.getRecordDisplayValues(data.requestor, grUser, 'sys_id,name,department');
+	
+	
+	
+	//data.today = "2020/11/10";//new Date().";
+	
+	
+		// Accounting string record created
+	//if(input.wbsString == "RecordAWBS"){
+		//var grAccountingString = new GlideRecord('x_g_na4_ita_accounting_string');
+		//grAccountingString.initialize();
+		//data.poc = input.poc.value;
+		//data.wbsID = grAccountingString.insert();
+	//	data.poc = "";			
+//	}
+	
+	//f(input)
+	//	data.services = input.services;
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-11-17 02:42:29</sys_created_on>
+        <sys_id>825d0d191b202410bab40f21f54bcb1c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Collaboration Services</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_widget_825d0d191b202410bab40f21f54bcb1c</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-11-17 02:48:08</sys_updated_on>
+        <template><![CDATA[<div>
+<div>
+  <table>
+    <tr>
+      <td>Date</td><td class="spacer"></td><td><sp-date-picker id="requestDate" field="data.requestDate" ng-model="c.data.requestDate" sn-change="saveStartDate()"></sp-date-picker></td><td>{{data.today}}</td>
+    </tr>
+    <tr>
+      <td>Requestor Name</td>
+      <td class="spacer"></td>
+      <td> <!--requestor-->
+        <sn-record-picker field="c.data.user"
+                          sn-model="c.data.user"
+                          table="'sys_user'"
+                          display-field="'name'"
+                          value-field="'sys_id'"
+                          search-fields="'name'"
+                          page-size="100"
+                          on-change="c.updateCode(value-field)">
+      </sn-record-picker></td>
+    </tr>
+    <tr>
+      <td>Requestor Organization</td><td class="spacer"></td><td>{{data.requestor.department}}</td><td>${data.user}</td>
+    </tr>
+    <tr>
+    	<td>Collaboration Service</td><td class="spacer"></td><td>     
+
+      <sn-choice-list field="c.serviceOptionDefault" 
+                      sn-model="c.data.serviceOptionDefault" 
+                      sn-options="c.serviceOptionList" 
+                      sn-value-field="value" 
+                      sn-text-field="label" 
+                      sn-items="c.serviceOptions" 
+                      sn-on-change="c.valueSelected(selectedValue)">
+      </sn-choice-list>
+        </td>
+    </tr>
+    
+    <div id="teamsQuestions" ng-show="${c.isTeams}">
+      <tr ng-show="${c.isTeams}">
+      	<td>Teams</td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Attendance list</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Channels (Standard or Private)</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Chat</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Custom Backgrounds</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>File sharing</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Notifications</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Pinning apps</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Recording meetings</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Together mode</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Whiteboard</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+      	<td></td><td>Moblie app</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isTeams}">
+        <td></td><td>Additional comments</td><td><textarea  rows="5" cols="100"></textarea></td>
+      </tr>
+    </div>
+    
+    <div id="boxsQuestions"  ng-show="${c.isBox}">
+      <tr ng-show="${c.isBox}">
+      	<td>Box</td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+      	<td></td><td>File sharing</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+      	<td></td><td>Board development</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+      	<td></td><td>Box notes</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+      	<td></td><td>Large files</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+      	<td></td><td>Mobile app</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+      	<td></td><td>Permissions</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+      	<td></td><td>Version control</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isBox}">
+        <td></td><td>Additional comments</td><td><textarea  rows="5" cols="100"></textarea></td>
+      </tr>
+    </div>
+    
+    
+    <div id="googleQuestions"  ng-show="${c.isGoogle}">
+      <tr ng-show="${c.isGoogle}">
+      	<td>Google Workspace / G Suite</td>
+      </tr>
+      <tr ng-show="${c.isGoogle}">
+        <td></td><td>Docs</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isGoogle}">
+      	<td></td><td>Drive</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isGoogle}">
+      	<td></td><td>Groups</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isGoogle}">
+      	<td></td><td>Sites</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isGoogle}">
+      	<td></td><td>Slides</td><td><input type="checkbox"></td>
+      </tr>
+      <tr ng-show="${c.isGoogle}">
+      	<td></td><td>Additional comments</td><td><textarea  rows="5" cols="100"></textarea></td>
+      </tr>
+      
+    </div>
+    
+    <div id="ccQuestions"  ng-show="${c.isCC}">
+      <tr ng-show="${c.isCC}">
+      	<td>Collaboration Consultation</td>
+      </tr>
+      <tr ng-show="${c.isCC}">
+      	<td></td><td>Request POCs</td><td><button  ng-click="c.openWBSModal()">
+        Add a user
+        </button></td>
+      </tr>
+      <tr ng-repeat="poc in c.pocGroup">
+      	<td></td><td></td><td>{{poc.poc}}</td>
+      </tr>
+      <tr ng-show="${c.isCC}">
+      	<td></td><td>Stakeholder</td><td><button ng-click="c.openStakeholderModal()">
+        Add a user
+        </button></td>
+      </tr>
+       <tr ng-repeat="stakeholder in c.stakeholderGroup">
+      	<td></td><td></td><td>{{stakeholder.poc}}</td>
+      </tr>
+      <tr ng-show="${c.isCC}">
+      	<td></td><td>Due date</td><td><input type="date"></td>
+      </tr>
+      <tr ng-show="${c.isCC}">
+      	<td></td><td>Descriptiion</td><td><textarea  rows="5" cols="100"></textarea></td>
+      </tr>
+      <tr ng-show="${c.isCC}">
+      	<td></td><td>Business justification</td><td><textarea  rows="5" cols="100"></textarea></td>
+      </tr>
+    </div>
+    
+    <div id="notSureQuestions"  ng-show="${c.isNotSure}">
+      <tr ng-show="${c.isNotSure}">
+      	<td>Not Sure</td>
+      </tr>
+      <tr>
+        <td></td><td>Descriptiion</td><td><textarea  rows="5" cols="100"></textarea></td>
+      </tr>
+    </div> 
+        
+  </table>
+</div>
+  
+<div>
+  </div>  
+</div>
+
+<script type="text/ng-template" id="wbsModalTemplate">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Fill out the details for the WBS fields</h4>
+    </div>
+    <table>      
+      <tr>
+        <td>
+          <label for="costCenter">POC</label>
+        </td>
+        <td>
+          <sn-record-picker 
+          	field="data.poc"
+            table="'sys_user'"
+            display-field="'name'"
+            value-field="'sys_id'"
+            search-fields="'name'"
+            page-size="100">
+          </sn-record-picker>
+        </td>
+      </tr>      
+    </table>
+    <div class="panel-footer text-right">
+      <button class="btn btn-primary" ng-click="c.saveWBS()">Save POC</button>
+      <button class="btn btn-primary" ng-click="c.closeWBSModal()">${Exit}</button>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="stakeholderModalTemplate">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Fill out the details for the WBS fields</h4>
+    </div>
+    <table>      
+      <tr>
+        <td>
+          <label for="costCenter">POC</label>
+        </td>
+        <td>
+          <sn-record-picker 
+          	field="data.stakeholder"
+            table="'sys_user'"
+            display-field="'name'"
+            value-field="'sys_id'"
+            search-fields="'name'"
+            page-size="100">
+          </sn-record-picker>
+        </td>
+      </tr>      
+    </table>
+    <div class="panel-footer text-right">
+      <button class="btn btn-primary" ng-click="c.saveStakeholder()">Save Stakeholder</button>
+      <button class="btn btn-primary" ng-click="c.closeStakeholderModal()">${Exit}</button>
+    </div>
+  </div>
+</script>
+]]></template>
+    </sp_widget>
+</record_update>

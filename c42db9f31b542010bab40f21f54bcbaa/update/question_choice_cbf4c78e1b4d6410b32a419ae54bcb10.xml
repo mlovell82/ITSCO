@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <misc>0</misc>
+        <order>1</order>
+        <question display_value="Collaboration service">c7f4878e1b4d6410b32a419ae54bcbdc</question>
+        <rec_misc>0</rec_misc>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-14 15:52:03</sys_created_on>
+        <sys_id>cbf4c78e1b4d6410b32a419ae54bcb10</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Box</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>question_choice_cbf4c78e1b4d6410b32a419ae54bcb10</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-14 15:52:03</sys_updated_on>
+        <text>Box</text>
+        <value>box</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=cbf4c78e1b4d6410b32a419ae54bcb10"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>misc</field>
+        <id>cbf4c78e1b4d6410b32a419ae54bcb10</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-14 15:52:03</sys_created_on>
+        <sys_id>4ff4c78e1b4d6410b32a419ae54bcb11</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-14 15:52:03</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>rec_misc</field>
+        <id>cbf4c78e1b4d6410b32a419ae54bcb10</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-14 15:52:03</sys_created_on>
+        <sys_id>07f4c78e1b4d6410b32a419ae54bcb11</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-14 15:52:03</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+</record_update>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="System security plan" max_length="40" name="x_g_nasa_grc_it_se_system_security_plan" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="ATO date" max_length="40" name="ato_date" type="glide_date"/>
+        <element attributes="edge_encryption_enabled=true" display="true" label="Authorization package name" max_length="40" name="authorization_package_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="ID / UID" max_length="40" name="id_uid" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="(ISO)" max_length="32" name="iso" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="(ISSO)" max_length="32" name="isso" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="(SCA)" max_length="32" name="sca" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="sca"/>
+        </index>
+        <index name="index2">
+            <element name="iso"/>
+        </index>
+        <index name="index3">
+            <element name="isso"/>
+        </index>
+    </element>
+</database>

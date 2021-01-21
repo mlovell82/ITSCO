@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {  /* widget controller */  var c = this;}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.center{
+ padding-left: 30px; 
+}
+
+.sspaced{
+ margin: 0; 
+}
+
+.buffer{
+ padding-bottom: 50px; 
+}
+h1 {
+  text-shadow: 1px 1px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>sharepoint_page</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>SharePoint Page</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-09 16:04:30</sys_created_on>
+        <sys_id>89e751a81bc52010b32a419ae54bcb4e</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>SharePoint Page</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sp_widget_89e751a81bc52010b32a419ae54bcb4e</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-23 15:28:28</sys_updated_on>
+        <template><![CDATA[<div>
+<h1><img src="sharepoint.png" width="140" height="144"/>
+  SharePoint Online
+  </h1>
+  <div class="buffer">
+    
+  </div>
+  <div class="center">
+    
+  <p>SharePoint Online is a key piece of the Microsoft O365 product offering and is the document-sharing and collaboration platform that enables many of the other O365 capabilities. It is also a cloud-based service that helps organizations share and manage content, knowledge, and applications.   
+
+    
+  </p>
+  <p>
+    
+The Collaboration Team can help you:
+
+  </p>
+  <ul>
+    <li>Build intranet sites and create pages, document libraries, and lists</li>
+    <li>Add web parts to customize your content</li>
+    <li>Show important visuals, news, and updates with a team or communications site</li>
+    <li>Discover, follow, and search for sites, files, and people across your company</li>
+    <li>Manage your daily routine with workflows, forms, and lists</li>
+    <li>Sync and store your files in the cloud so anyone in NASA can securely work with you</li>
+  </ul>
+  <p>To request a new SharePoint site or to report any issues, please 
+    <a href="https://apps.gov.powerapps.us/play/b1d09d8a-a40e-41cc-8565-72774a4e81a4" target="_blank">click here</a>.
+  </p>
+  
+  </div>
+  <div class="buffer">
+    
+  </div>
+  <p>
+    Knowledge Articles
+  </p>
+  <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/spsupport/SitePages/SharePoint-Online.aspx" target="_blank">SharePoint Online: Getting Started</a></p>
+  <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/spsupport/SitePages/SharePoint-Online--Permissions-Management.aspx" target="_blank">SharePoint Online: Permissions Management</a></p>
+  <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/spsupport/SitePages/SharePoint-Online--List-Formatting.aspx" target="_blank">SharePoint Online: List Formatting</a></p>
+  <p class="sspaced"><a href="https://nasa.sharepoint.com/sites/spsupport/SitePages/SharePoint-Online--Copy-Link.aspx" target="_blank">SharePoint Online: Copy Link</a></p>
+  <p class="sspaced"> <a href="https://nasa.sharepoint.com/sites/spsupport/SitePages/Share-Button-Use.aspx" target="_blank">SharePoint Online: How to Share the Right Way</a></p>
+  <p class="sspaced"> <a href="https://nasa.sharepoint.com/sites/spsupport/SitePages/SPO-508-Compliance.aspx" target="_blank">SharePoint Online: Tips for 508 Compliance</a></p>
+</div>]]></template>
+    </sp_widget>
+</record_update>

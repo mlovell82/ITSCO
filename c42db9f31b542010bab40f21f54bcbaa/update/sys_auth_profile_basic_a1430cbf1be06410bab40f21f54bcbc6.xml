@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_auth_profile_basic">
+    <sys_auth_profile_basic action="INSERT_OR_UPDATE">
+        <name>Mick</name>
+        <password>zGO7DyZ8HSY/x3R+4JIFgA==</password>
+        <sys_class_name>sys_auth_profile_basic</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-11-24 15:44:17</sys_created_on>
+        <sys_id>a1430cbf1be06410bab40f21f54bcbc6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Mick</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sys_auth_profile_basic_a1430cbf1be06410bab40f21f54bcbc6</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-11-24 15:44:17</sys_updated_on>
+        <username>mslovell</username>
+    </sys_auth_profile_basic>
+</record_update>

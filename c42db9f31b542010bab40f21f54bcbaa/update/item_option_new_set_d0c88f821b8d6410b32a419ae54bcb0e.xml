@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="item_option_new_set">
+    <item_option_new_set action="INSERT_OR_UPDATE">
+        <create_roles/>
+        <description/>
+        <display_title>false</display_title>
+        <internal_name>meeting_attendees</internal_name>
+        <layout>normal</layout>
+        <name/>
+        <order>2320</order>
+        <read_roles/>
+        <set_attributes/>
+        <sys_class_name>item_option_new_set</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-12-14 16:09:43</sys_created_on>
+        <sys_id>d0c88f821b8d6410b32a419ae54bcb0e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Meeting attendees</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>item_option_new_set_d0c88f821b8d6410b32a419ae54bcb0e</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-12-14 16:09:43</sys_updated_on>
+        <title>Meeting attendees</title>
+        <type>one_to_many</type>
+        <write_roles/>
+    </item_option_new_set>
+</record_update>

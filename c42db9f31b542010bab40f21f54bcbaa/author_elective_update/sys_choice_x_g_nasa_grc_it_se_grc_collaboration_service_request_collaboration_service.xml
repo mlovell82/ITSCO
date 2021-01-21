@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="collaboration_service" table="x_g_nasa_grc_it_se_grc_collaboration_service_request" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>collaboration_service</element>
+            <name>x_g_nasa_grc_it_se_grc_collaboration_service_request</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-13 18:08:43</sys_created_on>
+            <sys_id>83fa73c81b246010bab40f21f54bcbb2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>collaboration_service</sys_name>
+            <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+            <sys_update_name>sys_choice_x_g_nasa_grc_it_se_grc_collaboration_service_request_collaboration_service</sys_update_name>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-13 18:08:43</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaboration_service</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Teams</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_grc_collaboration_service_request</name>
+            <sequence>0</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-13 18:08:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4bfa73c81b246010bab40f21f54bcbb1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-13 18:08:43</sys_updated_on>
+            <value>teams</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaboration_service</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Box</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_grc_collaboration_service_request</name>
+            <sequence>1</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-13 18:08:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>cbfa73c81b246010bab40f21f54bcbb3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-13 18:08:43</sys_updated_on>
+            <value>box</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaboration_service</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Google Workspace</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_grc_collaboration_service_request</name>
+            <sequence>2</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-13 18:08:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>8bfa73c81b246010bab40f21f54bcbb5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-13 18:08:43</sys_updated_on>
+            <value>google workspace</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaboration_service</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Collaboration consultation</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_grc_collaboration_service_request</name>
+            <sequence>3</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-13 18:08:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4bfa73c81b246010bab40f21f54bcbb7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-13 18:08:43</sys_updated_on>
+            <value>collaboration consultation</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>collaboration_service</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Not sure</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_grc_collaboration_service_request</name>
+            <sequence>4</sequence>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-13 18:08:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0bfa73c81b246010bab40f21f54bcbb9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-13 18:08:43</sys_updated_on>
+            <value>not sure</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

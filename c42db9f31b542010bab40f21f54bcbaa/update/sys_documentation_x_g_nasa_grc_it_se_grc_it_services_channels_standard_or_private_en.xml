@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="channels_standard_or_private" label="Channels (Standard or Private)" language="en" table="x_g_nasa_grc_it_se_grc_it_services">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>channels_standard_or_private</element>
+            <help/>
+            <hint/>
+            <label>Channels (Standard or Private)</label>
+            <language>en</language>
+            <name>x_g_nasa_grc_it_se_grc_it_services</name>
+            <plural>Channels (Standard or Private)</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>mslovell</sys_created_by>
+            <sys_created_on>2020-11-13 13:44:56</sys_created_on>
+            <sys_id>fe9e72cc1b606010bab40f21f54bcb06</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Channels (Standard or Private)</sys_name>
+            <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+            <sys_update_name>sys_documentation_x_g_nasa_grc_it_se_grc_it_services_channels_standard_or_private_en</sys_update_name>
+            <sys_updated_by>mslovell</sys_updated_by>
+            <sys_updated_on>2020-11-13 13:44:56</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

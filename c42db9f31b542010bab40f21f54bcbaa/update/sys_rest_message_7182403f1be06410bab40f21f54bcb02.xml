@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message">
+    <sys_rest_message action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <authentication_type>basic</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile display_value="Mick">a1430cbf1be06410bab40f21f54bcbc6</basic_auth_profile>
+        <basic_auth_user/>
+        <description>Creates a record in Jira when a ServiceNow record is created.</description>
+        <name>GRC IT REST SN to Jira</name>
+        <oauth2_profile/>
+        <protocol_name/>
+        <rest_endpoint>https://jira-test.grc.nasa.gov:8443/rest/api/2/</rest_endpoint>
+        <sys_class_name>sys_rest_message</sys_class_name>
+        <sys_created_by>mslovell</sys_created_by>
+        <sys_created_on>2020-11-24 15:44:26</sys_created_on>
+        <sys_id>7182403f1be06410bab40f21f54bcb02</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GRC IT REST SN to Jira</sys_name>
+        <sys_package display_value="GRC IT Services" source="x_g_nasa_grc_it_se">c42db9f31b542010bab40f21f54bcbaa</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="GRC IT Services">c42db9f31b542010bab40f21f54bcbaa</sys_scope>
+        <sys_update_name>sys_rest_message_7182403f1be06410bab40f21f54bcb02</sys_update_name>
+        <sys_updated_by>mslovell</sys_updated_by>
+        <sys_updated_on>2020-11-24 15:44:26</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message>
+</record_update>
